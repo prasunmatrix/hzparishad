@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
       $uploaded_name = $_FILES['banner_image']['name'];
       $ext = pathinfo($file_name, PATHINFO_EXTENSION);
       $file = basename($file_name, "." . $ext);
-      $actual_file = $file . "." . $ext;
+      $actual_file = time() . "." . $ext;
       //$upload_dir = $_SERVER['DOCUMENT_ROOT'] . "/hzparishad/assets/uploads/";
       $upload_dir = "../assets/uploads/banner/";
       move_uploaded_file($file_tmp, "$upload_dir" . $actual_file);

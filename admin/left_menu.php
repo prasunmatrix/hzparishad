@@ -37,7 +37,7 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
       <div data-i18n="Analytics">Notice Management</div>
       </a>
     </li>
-    <li class="menu-item <?php if ($activePage == "banner" || $activePage == "addbanner") {
+    <li class="menu-item <?php if ($activePage == "banner" || $activePage == "addbanner" || $activePage == "editbanner") {
                             echo "active";
                           } else {
                             echo "noactive";
@@ -45,6 +45,16 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
               <a href="banner.php" class="menu-link">
       <i class="menu-icon tf-icons bx bx-home-circle"></i>
       <div data-i18n="Analytics">Banner Management</div>
+      </a>
+    </li>
+    <li class="menu-item <?php if ($activePage == "photogallery" || $activePage == "addphotogallery" || $activePage == "editphotogallery") {
+                            echo "active";
+                          } else {
+                            echo "noactive";
+                          } ?>">
+              <a href="photogallery.php" class="menu-link">
+      <i class="menu-icon tf-icons bx bx-home-circle"></i>
+      <div data-i18n="Analytics">Photo Gallery Management</div>
       </a>
     </li>
     <!-- Layouts -->

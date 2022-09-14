@@ -108,6 +108,7 @@ while ($row = mysqli_fetch_array($ret)) {
                               <input type="file" id="image" name="image" class="form-control" />
                               <input type="hidden" name="image_old" value="<?php echo $row['image']; ?>" />
                             </div>
+                            <span class="system required" style="color: red;">(Recommended Image Size: 800 × 600)*</span>
                           </div>
                         </div>
                         <div>

@@ -112,6 +112,7 @@ while ($row = mysqli_fetch_array($ret)) {
                               <input type="file" id="banner_image" name="banner_image" class="form-control" />
                               <input type="hidden" name="banner_image_old" value="<?php echo $row['banner_image']; ?>" />
                             </div>
+                            <span class="system required" style="color: red;">(Recommended Image Size: 2000 × 600)*</span>
                           </div>
                         </div>
                         <div>

@@ -99,6 +99,7 @@ include('admin_head.php');
                           <div class="input-group input-group-merge">
                             <input type="file" id="image" name="image" required class="form-control" />
                           </div>
+                          <span class="system required" style="color: red;">(Recommended Image Size: 800 × 600)*</span>
                         </div>
                       </div>
                       <div class="row mb-3">

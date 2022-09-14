@@ -1,7 +1,7 @@
 <?php
   $servername = "localhost";
-  $username = "admin";
-  $password = "Matrix@2022";
+  $username = "root";
+  $password = "";
   $dbname = "matrixmedia_db_hzparishad2022";
 
   // Create connection

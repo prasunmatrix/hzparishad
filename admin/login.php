@@ -149,7 +149,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
               </div>
             </form>
-            <div style="font-size:15px; color:#cc0000; margin-top:10px"><?php echo $error; ?></div>
+            <div style="font-size:15px; color:#cc0000; margin-top:10px"><?php echo @$error; ?></div>
 
             <!-- <p class="text-center">
                 <span>New on our platform?</span>

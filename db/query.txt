@@ -16,3 +16,18 @@ ALTER TABLE `matrixmedia_db_hzparishad2022`.`photo_gallery` MODIFY `id` int(11) 
 
 2. ALTER TABLE `photo_gallery` CHANGE `banner_title` `Image_title` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, CHANGE `banner_image` `image` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
 3. ALTER TABLE `photo_gallery` CHANGE `Image_title` `image_title` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
+
+PRASUN-Date:15/09/2022
+1. CREATE TABLE `matrixmedia_db_hzparishad2022`.`video_gallery` (
+  `id` int(11) NOT NULL,
+  `image_title` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `status` enum('1','0') NOT NULL,
+  `is_deleted` enum('1','0') NOT NULL DEFAULT '0',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ALTER TABLE `matrixmedia_db_hzparishad2022`.`video_gallery` ADD PRIMARY KEY (`id`);
+ALTER TABLE `matrixmedia_db_hzparishad2022`.`video_gallery` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+2. ALTER TABLE `video_gallery` CHANGE `image_title` `video_title` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, CHANGE `image` `video` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;

@@ -57,6 +57,16 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
       <div data-i18n="Analytics">Photo Gallery Management</div>
       </a>
     </li>
+    <li class="menu-item <?php if ($activePage == "videogallery" || $activePage == "addvideogallery" || $activePage == "editvideogallery") {
+                            echo "active";
+                          } else {
+                            echo "noactive";
+                          } ?>">
+              <a href="videogallery.php" class="menu-link">
+      <i class="menu-icon tf-icons bx bx-home-circle"></i>
+      <div data-i18n="Analytics">Video Gallery Management</div>
+      </a>
+    </li>
     <!-- Layouts -->
 
     <!-- Components -->

@@ -119,7 +119,7 @@
             {data: 'title'},
             {mRender: function (data, type, row) {
                 // return '<a class="table-delete" data-id="' + row[0] + '">DELETE</a>'
-                return '<a href="assets/uploads/tender/'+ row.tender_notice +'" target="_blank">Download</a>'
+                return '<a href="assets/uploads/'+ row.tender_notice +'" download>Download</a>'
             }},
             {data: 'publication_date'},
             {data: 'submission_date'}

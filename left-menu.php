@@ -32,8 +32,8 @@
          <li class="dropdown">
             <a href="#"><span>Publications</span> <i class="bi bi-chevron-right"></i></a>
             <ul>
-               <li><a href="notices.php">Notices</a></li>
-               <li><a href="tenders.php">Tenders</a></li>
+               <!-- <li><a href="notices.php">Notices</a></li>
+               <li><a href="tenders.php">Tenders</a></li> -->
                <li><a href="applications.php">Recruitments: Online Application for Recruitment</a></li>
                <li><a href="circulars.php">Circulars</a></li>                        
                <li><a href="important-announcements.php">Important Announcements</a></li>

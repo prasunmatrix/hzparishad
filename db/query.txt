@@ -31,3 +31,9 @@ ALTER TABLE `matrixmedia_db_hzparishad2022`.`video_gallery` ADD PRIMARY KEY (`id
 ALTER TABLE `matrixmedia_db_hzparishad2022`.`video_gallery` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 2. ALTER TABLE `video_gallery` CHANGE `image_title` `video_title` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, CHANGE `image` `video` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
+
+PRASUN-Date:16/09/2022
+1. ALTER TABLE `tender` CHANGE `created_at` `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP;
+2. ALTER TABLE `tender` ADD `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `created_at`;
+3. ALTER TABLE `notice` CHANGE `created_at` `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP;
+4. ALTER TABLE `notice` ADD `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `created_at`;

@@ -2,7 +2,6 @@
    //echo "hello..";
    include_once('header.php');
    ?>
-   
 <!-- End Header -->
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -26,9 +25,9 @@
       <div class="container">
          <ol>
             <li><a href="https://www.demoyourprojects.com/hzparishad/">Home</a></li>
-            <li>Latest Tender</li>
+            <li>Latest Notice</li>
          </ol>
-         <h2>Latest Tender</h2>
+         <h2>Latest Notice</h2>
       </div>
    </section>
    <!-- End Breadcrumbs -->
@@ -41,7 +40,7 @@
                   ?>
             </div>
             <div class="col-lg-9">
-               <h3>Latest Tender</h3>
+               <h3>Latest Notice</h3>
                <div class="row">
                <div class="dateFilter">
                 <form action="">
@@ -61,25 +60,20 @@
                 <table id="example" class="display nowrap" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Tender No.</th>
-                            <th>Type</th>
-                            <th>Title</th>
-                            <th>Tender Notice</th>
-                            <th>Tender Date</th>
-                            <th>Last Date of Application</th>
-                            
-                            <!--<th>Related Amendment/Notice/Notification</th>-->
+                            <th>Notice No.</th>
+                            <th>Notice Subject</th>
+                            <th>Notice</th>
+                            <th>Related Amendment</th>
                         </tr>
                     </thead>
                     <tbody>
-                       <!-- <tr>
+                        <tr>
                             <td>Notice Inviting e-Tender No. WBNKDA/11/EE–I/NKDA/2022-23</td>
                             <td>Providing Mosquito Control measures through Spraying / Fogging etc. for preventing Vector borne diseases by way of elimination of mosquitoes at the entire project area of New Town, Kolkata as will be assigned by NKDA for a period of 12 (twelve) months.</td>
-                            <td>25/07/2022</td>
-                            <td>16/08/2022</td>
+                            
                             <td><a href="assets/pdf/sample.pdf" download>Download</a></td>
                             <td></td>
-                        </tr>-->
+                        </tr>
                        
                     </tbody>
                 </table>
@@ -105,25 +99,4 @@
             dom: 'Qlfrtip'
         });
     });
-</script>
-<script>
-    $(document).ready(function() {
-        // alert('aaa');
-    $('#example').dataTable({
-        "processing": true,
-        "bDestroy": true,
-        "ajax": "fetch_tender_record.php",
-        "columns": [
-            {data: 'tender_no'},
-            {data: 'tender_type'},
-            {data: 'title'},
-            {mRender: function (data, type, row) {
-                // return '<a class="table-delete" data-id="' + row[0] + '">DELETE</a>'
-                return '<a href="assets/uploads/tender/'+ row.tender_notice +'" target="_blank">Download</a>'
-            }},
-            {data: 'publication_date'},
-            {data: 'submission_date'}
-        ]
-    });
-});
 </script>

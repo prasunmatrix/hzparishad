@@ -3,49 +3,57 @@
    include_once("../conn.php");
 ?>
 <?php 
+
 if(isset($_POST['submit']))
   {
   	//getting the post values
-    $tender_no=$_POST['tender_no'];
+    $notice_no=$_POST['notice_no'];
     $title=$_POST['title'];
-    $publication_date=$_POST['publication_date'];
-    $tender_type=$_POST['tender_type'];
-    $submission_date=$_POST['submission_date'];
-    $filename = $_FILES["tender_notice"]["name"];
-    $file_name = $_FILES['tender_notice']['name'];
+    $filename = $_FILES["notice"]["name"];
+    $file_name = $_FILES['notice']['name'];
     $extension = substr($file_name,strlen($file_name)-4,strlen($file_name));
     $allowed_extensions = array(".pdf");
     // Validation for allowed extensions .in_array() function searches an array for a specific value.
     if(!in_array($extension,$allowed_extensions))
     {
     echo "<script>alert('Invalid format. Only pdf format allowed');</script>";
-    echo "<script>window.location.href = 'addtender.php'</script>";
-    die;
+    echo "<script>window.location.href = 'addnotice.php'</script>";
     }
     else
     {
-    $file_tmp =$_FILES['tender_notice']['tmp_name'];
+    //rename the image file
+    // $imgnewfile=md5($imgfile).time().$extension;
+    $file_tmp =$_FILES['notice']['tmp_name'];
     // $target = "admin/assets/";
-    $uploaded_name=$_FILES['tender_notice']['name'];
+    $uploaded_name=$_FILES['notice']['name'];
     $ext = pathinfo($file_name, PATHINFO_EXTENSION);
     $file = basename($file_name, ".".$ext); 
-    //$actual_file=$file.".".$ext;
-    $actual_file=time().".".$ext;
+    $actual_file=$file.".".$ext;
     // $target = dirname(__FILE__)."/assets/";
     // $target = $target . basename( $_FILES['notice']['name']);
-    //  $upload_dir ="assets/uploads/";
-     //$upload_dir = $_SERVER['DOCUMENT_ROOT'] . "/hzparishad/assets/uploads/";
-     $upload_dir = "../assets/uploads/tender/";
+    // Code for move image into directory
+    // move_uploaded_file($_FILES['notice']['tmp_name'],$target);
+     $upload_dir = $_SERVER['DOCUMENT_ROOT'] . "/hzparishad/assets/uploads/";
      move_uploaded_file($file_tmp,"$upload_dir".$actual_file);
        
     }
+
+       /* $tmp_file_to_upload = $_FILES['notice'];
+        $uploaded_name = $tmp_file_to_upload['name'];
+     $tmp_name = $tmp_file_to_upload['tmp_name'];
+     define ('SITE_ROOT', realpath(dirname(__FILE__)));
+     $destination = realpath(dirname(__FILE__))."uploads/$uploaded_name";
+    $path=move_uploaded_file($_FILES['tender_notice']['tmp_name'], SITE_ROOT."/assets/$uploaded_name");*/
+    //  move_uploaded_file($tmp_name, $destination);
+        // move_uploaded_file($file_tmp,"../uploads/".$file_name);
+
   
       
   // Query for data insertion
-     $query=mysqli_query($conn, "insert into tender(tender_no,title,tender_type, tender_notice, publication_date, submission_date) value('$tender_no','$title','$tender_type', '$actual_file', '$publication_date', '$submission_date' )");
+     $query=mysqli_query($conn, "insert into notice(notice_no,title, notice) value('$notice_no','$title', '$actual_file' )");
     if ($query) {
     echo "<script>alert('You have successfully inserted the data');</script>";
-    echo "<script type='text/javascript'> document.location ='tender.php'; </script>";
+    echo "<script type='text/javascript'> document.location ='notice.php'; </script>";
   }
   else
     {
@@ -94,7 +102,7 @@ if(isset($_POST['submit']))
             <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
-              <h4 class="fw-bold py-3 mb-4"> Add Tender</h4>
+              <h4 class="fw-bold py-3 mb-4"> Add Notice</h4>
 
               <!-- Basic Layout & Basic with Icons -->
               <div class="row">
@@ -102,27 +110,17 @@ if(isset($_POST['submit']))
                 <div class="col-xxl">
                   <div class="card mb-4">
                     <div class="card-header d-flex align-items-center justify-content-between">
-                      <h5 class="mb-0">Add Tender</h5>
+                      <h5 class="mb-0">Add Notice</h5>
                       <small class="text-muted float-end"></small>
                     </div>
                     <div class="card-body">
                       <form method="post" enctype="multipart/form-data">
                         <div class="row mb-3">
-                          <label class="col-sm-2 col-form-label" for="basic-default-name">Tender No</label>
+                          <label class="col-sm-2 col-form-label" for="basic-default-name">Notice No</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" name="tender_no" required id="tender_no" placeholder="Tender No" />
+                            <input type="text" class="form-control" name="notice_no" required id="notice_no" placeholder="Notice No" />
                           </div>
                         </div>
-                        <div class="row mb-3">
-                          <label class="col-sm-2 col-form-label" for="basic-default-name">Tender Type</label>
-                          <div class="col-sm-10">
-                          <select class="form-select" id="tender_type" required name="tender_type" aria-label="Default select example">
-                          <option value="Paper Tender">Paper Tender</option>
-                          <option value="E-Tender">E-Tender</option>
-                        </select>
-                          </div>
-                        </div>
-                        
                         <div class="row mb-3">
                           <label class="col-sm-2 col-form-label" for="basic-default-company">Title</label>
                           <div class="col-sm-10">
@@ -137,13 +135,13 @@ if(isset($_POST['submit']))
                           </div>
                         </div>
                         <div class="row mb-3">
-                          <label class="col-sm-2 col-form-label" for="basic-default-email">Tender Notice</label>
+                          <label class="col-sm-2 col-form-label" for="basic-default-email">Notice</label>
                           <div class="col-sm-10">
                             <div class="input-group input-group-merge">
                               <input
                                 type="file"
-                                id="tender_notice"
-                                name="tender_notice"
+                                id="notice"
+                                name="notice"
                                 required
                                 class="form-control"
                                 
@@ -152,32 +150,8 @@ if(isset($_POST['submit']))
                             </div>
                           </div>
                         </div>
-                        <div class="row mb-3">
-                          <label class="col-sm-2 col-form-label" for="basic-default-company">Publication Date</label>
-                          <div class="col-sm-10">
-                            <input
-                              type="date"
-                              class="form-control"
-                              id="publication_date"
-                              name="publication_date"
-                              required
-                              placeholder="Publication Date"
-                            />
-                          </div>
-                        </div>
-                        <div class="row mb-3">
-                          <label class="col-sm-2 col-form-label" for="basic-default-company">Submission Date</label>
-                          <div class="col-sm-10">
-                            <input
-                              type="date"
-                              class="form-control"
-                              id="submission_date"
-                              name="submission_date"
-                              required
-                              placeholder="Submission Date"
-                            />
-                          </div>
-                        </div>
+                        
+                      
                         <div class="row justify-content-end">
                           <div class="col-sm-10">
                             <button type="submit" class="btn btn-primary" name="submit">Submit</button>

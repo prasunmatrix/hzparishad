@@ -20,22 +20,23 @@ if(isset($_POST['submit']))
     {
     echo "<script>alert('Invalid format. Only pdf format allowed');</script>";
     echo "<script>window.location.href = 'addtender.php'</script>";
-    die;
     }
     else
     {
+    //rename the image file
+    // $imgnewfile=md5($imgfile).time().$extension;
     $file_tmp =$_FILES['tender_notice']['tmp_name'];
     // $target = "admin/assets/";
     $uploaded_name=$_FILES['tender_notice']['name'];
     $ext = pathinfo($file_name, PATHINFO_EXTENSION);
     $file = basename($file_name, ".".$ext); 
-    //$actual_file=$file.".".$ext;
-    $actual_file=time().".".$ext;
+    $actual_file=$file.".".$ext;
     // $target = dirname(__FILE__)."/assets/";
     // $target = $target . basename( $_FILES['notice']['name']);
+    // Code for move image into directory
+    // move_uploaded_file($_FILES['notice']['tmp_name'],$target);
     //  $upload_dir ="assets/uploads/";
-     //$upload_dir = $_SERVER['DOCUMENT_ROOT'] . "/hzparishad/assets/uploads/";
-     $upload_dir = "../assets/uploads/tender/";
+     $upload_dir = $_SERVER['DOCUMENT_ROOT'] . "/hzparishad/assets/uploads/";
      move_uploaded_file($file_tmp,"$upload_dir".$actual_file);
        
     }

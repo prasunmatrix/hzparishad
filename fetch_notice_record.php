@@ -12,12 +12,12 @@ while($row = mysqli_fetch_assoc($result)) {
 }
 //print_r($array);die;
 //echo count($arr); die; 
-if(count($arr)>0)
+if(isset($arr))
 {  
   $dataset = array(
     "echo" => 1,
-    "totalrecords" => count($array),
-    "totaldisplayrecords" => count($array),
+    "totalrecords" => count($arr),
+    "totaldisplayrecords" => count($arr),
     "data" => $arr
 );  
 }
@@ -25,9 +25,9 @@ else
 {
   $dataset = array(
     "echo" => 0,
-    "totalrecords" => count($array),
-    "totaldisplayrecords" => count($array),
-    "data" =>'null' 
+    "totalrecords" => 0,
+    "totaldisplayrecords" => 0,
+    "data" =>[] 
   );
 }
 echo json_encode($dataset);

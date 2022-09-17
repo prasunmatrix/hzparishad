@@ -107,21 +107,21 @@ include_once('footer.php');
     $('#example').dataTable({
       "processing": true,
       "bDestroy": true,
-      "serverSide":true,
+      //"serverSide":true,
       "ajax": "fetch_notice_record.php",
-      // "columns": [{
-      //     data: 'notice_no'
-      //   },
-      //   {
-      //     data: 'title'
-      //   },
-      //   {
-      //     mRender: function(data, type, row) {
-      //       // return '<a class="table-delete" data-id="' + row[0] + '">DELETE</a>'
-      //       return '<a href="assets/uploads/notice/' + row.notice + '" target="_blank">Download</a>'
-      //     }
-      //   }
-      // ]
+      "columns": [{
+          data: 'notice_no'
+        },
+        {
+          data: 'title'
+        },
+        {
+          mRender: function(data, type, row) {
+            // return '<a class="table-delete" data-id="' + row[0] + '">DELETE</a>'
+            return '<a href="assets/uploads/notice/' + row.notice + '" target="_blank">Download</a>'
+          }
+        }
+      ]
     });
   });
 </script>

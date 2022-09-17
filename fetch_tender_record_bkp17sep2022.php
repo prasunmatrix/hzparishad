@@ -19,23 +19,12 @@ while($row = mysqli_fetch_assoc($result)) {
 		$records[] = $rows;*/
 }
 // print_r($row);die;
-if(isset($array))
-{
-  $dataset = array(
+$dataset = array(
     "echo" => 1,
     "totalrecords" => count($array),
     "totaldisplayrecords" => count($array),
     "data" => $array
-  );  
-}
-else
-{
-  $dataset = array(
-    "echo" => 0,
-    "totalrecords" => 0,
-    "totaldisplayrecords" => 0,
-    "data" => []
-  );
-}
+);
+
 echo json_encode($dataset);
 ?>

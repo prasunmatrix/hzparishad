@@ -44,17 +44,14 @@ error_reporting(E_ALL);
           <h3>Latest Notice</h3>
           <div class="row">
             <div class="dateFilter">
-              <form action="" method="post">
+              <form action="">
                 <table width="100%">
                   <tr>
                     <td>Date From</td>
-                    <td><input type="date" name="frm_date" id="frm_date"></td>
+                    <td><input type="date"></td>
                     <td>To</td>
-                    <td><input type="date" name="to_date" id="to_date"></td>
-                    <td><input type="button" class="search-btn" value="Search" id="search"> &nbsp;<a href="notice.php" class="reset-btn">Reset</a></td>
-                  </tr>
-                  <tr>
-                    <td colspan="5"><div class="col-sm-12 text-danger" id="error_log"></div></td>
+                    <td><input type="date"></td>
+                    <td><input type="submit" class="search-btn" value="Search"></td>
                   </tr>
                 </table>
               </form>
@@ -105,65 +102,26 @@ include_once('footer.php');
   });
 </script>
 <script>
-  load_data(); // first load
-  function load_data(frm_date, to_date) {
-    $(document).ready(function() {
-      // alert('aaa');
-      $('#example').dataTable({
-        "processing": true,
-        "bDestroy": true,
-        //"serverSide":true,
-        "stateSave": true,
-        //"ajax": "fetch_notice_record.php",
-        "lengthMenu": [
-          [10, 25, 50, 100, -1],
-          [10, 25, 50, 100, "All"]
-        ],
-        "ajax": {
-          "url": "fetch_notice_record.php",
-          "dataType": "json",
-          "type": "POST",
-          "data": {
-            "action": "example",
-            "frm_date": frm_date,
-            "to_date": to_date
-          },
+  $(document).ready(function() {
+    // alert('aaa');
+    $('#example').dataTable({
+      "processing": true,
+      "bDestroy": true,
+      //"serverSide":true,
+      "ajax": "fetch_notice_record.php",
+      "columns": [{
+          data: 'notice_no'
         },
-        "columns": [{
-            data: 'notice_no'
-          },
-          {
-            data: 'title'
-          },
-          {
-            mRender: function(data, type, row) {
-              // return '<a class="table-delete" data-id="' + row[0] + '">DELETE</a>'
-              return '<a href="assets/uploads/notice/' + row.notice + '" target="_blank">Download</a>'
-            }
+        {
+          data: 'title'
+        },
+        {
+          mRender: function(data, type, row) {
+            // return '<a class="table-delete" data-id="' + row[0] + '">DELETE</a>'
+            return '<a href="assets/uploads/notice/' + row.notice + '" target="_blank">Download</a>'
           }
-        ]
-      });
+        }
+      ]
     });
-  }
-  $("#search").click(function() {
-    var frm_date = $("#frm_date").val();
-    var to_date = $("#to_date").val();
-    //console.log(frm_date);
-    var date1 = new Date(frm_date);
-    var date2 = new Date(to_date);
-    var diffTime = Math.abs(date2 - date1);
-    var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-    if (frm_date == '' || to_date == '') {
-      $("#error_log").html("Warning: You must select both (from and to) date.</span>");
-    } else {
-      if (date1 > date2) {
-        $("#error_log").html("Warning: To date should be greater then from date.");
-      } else {
-        $("#error_log").html("");
-        $('#example').DataTable().destroy();
-        load_data(frm_date, to_date);
-      }
-    }
   });
 </script>

@@ -418,7 +418,7 @@ img {max-width: 100%;}
 --------------------------------------------------------------*/
 section {
   padding: 60px 0;
-  overflow: hidden;
+  /* overflow: hidden;   changes by pk for side menu hidden date:19/sep/2022 */    
   position: relative;
 }
 
@@ -2004,8 +2004,21 @@ section {
     background-color: #202020;
     cursor: pointer;
 }
-
-
+/*****************for reset button by pk:19/09/2022  **************/
+.reset-btn {
+  width: fit-content;
+  background-color: #f80000;
+  border: none;
+  padding: 6px 15px;
+  color: #fff;
+  border-radius: 5px;
+  text-transform: uppercase;
+}
+.reset-btn:hover {
+    background-color: #202020;
+    cursor: pointer;
+}
+/*****************for reset button by pk:19/09/2022  **************/
 /** DataTable **/
 
 

@@ -9,7 +9,8 @@ if(isset($_GET['delid']))
 $rid=intval($_GET['delid']);
 // $profilepic=$_GET['ppic'];
 // $ppicpath="profilepics"."/".$profilepic;
-$sql=mysqli_query($conn,"delete from tender where id=$rid");
+//$sql=mysqli_query($conn,"delete from tender where id=$rid");
+$sql = mysqli_query($conn, "update tender SET is_deleted='1' where id=$rid");
 // unlink($ppicpath);
 echo "<script>alert('Data has been deleted');</script>"; 
 echo "<script>window.location.href = 'tender.php'</script>";     
@@ -25,7 +26,7 @@ if (isset($_GET["page"])) {
 	$page=1;
 	};  
 $start_from = ($page-1) * $limit;  
-$result = mysqli_query($conn,"SELECT * FROM tender ORDER BY id DESC LIMIT $start_from, $limit");
+$result = mysqli_query($conn,"SELECT * FROM tender where is_deleted='0' ORDER BY id DESC LIMIT $start_from, $limit");
 ?>
 <!DOCTYPE html>
 
@@ -106,6 +107,7 @@ $result = mysqli_query($conn,"SELECT * FROM tender ORDER BY id DESC LIMIT $start
                         <th>Tender Type</th>
                         <th>Publication Date</th>
                         <th>Submission Date</th>
+                        <th>Status</th>
                         <th>Actions</th>
                       </tr>
                     </thead>
@@ -119,7 +121,8 @@ $result = mysqli_query($conn,"SELECT * FROM tender ORDER BY id DESC LIMIT $start
                               <td><?php echo $row["title"]; ?></td>
                               <td><?php echo $row["tender_type"]; ?></td>
                               <td><?php echo $row["publication_date"]; ?></td>
-                              <td><?php echo $row["submission_date"]; ?></td>		
+                              <td><?php echo $row["submission_date"]; ?></td>
+                              <td><?php echo $row["status"]==1 ? 'Show':'Hidden' ; ?></td>		
                               <td>
                                 <div class="dropdown">
                                   <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">

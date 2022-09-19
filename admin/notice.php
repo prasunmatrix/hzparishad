@@ -9,7 +9,8 @@ if(isset($_GET['delid']))
 $rid=intval($_GET['delid']);
 // $profilepic=$_GET['ppic'];
 // $ppicpath="profilepics"."/".$profilepic;
-$sql=mysqli_query($conn,"delete from notice where id=$rid");
+//$sql=mysqli_query($conn,"delete from notice where id=$rid");
+$sql=mysqli_query($conn,"update notice SET is_deleted='1' where id=$rid");
 // unlink($ppicpath);
 echo "<script>alert('Data has been deleted');</script>"; 
 echo "<script>window.location.href = 'notice.php'</script>";     
@@ -25,7 +26,7 @@ if (isset($_GET["page"])) {
  $page=1;
  };  
 $start_from = ($page-1) * $limit;  
-$result = mysqli_query($conn,"SELECT * FROM notice ORDER BY id DESC LIMIT $start_from, $limit");
+$result = mysqli_query($conn,"SELECT * FROM notice where is_deleted='0' ORDER BY id DESC LIMIT $start_from, $limit");
 ?>
 <!DOCTYPE html>
 
@@ -103,7 +104,7 @@ include('admin_head.php');
                    <tr>
                      <th>Notice No</th>
                      <th>Title</th>
-                     
+                     <th>Status</th>
                      <th>Actions</th>
                    </tr>
                  </thead>
@@ -117,7 +118,7 @@ include('admin_head.php');
                                <tr>  
                            <td><?php echo $row["notice_no"]; ?></td>  
                            <td><?php echo $row["title"]; ?></td>
-                           
+                           <td><?php echo $row["status"]==1 ? 'Show':'Hidden' ; ?></td>
                            <td>
                              <div class="dropdown">
                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">

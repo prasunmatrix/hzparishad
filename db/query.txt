@@ -37,3 +37,8 @@ PRASUN-Date:16/09/2022
 2. ALTER TABLE `tender` ADD `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `created_at`;
 3. ALTER TABLE `notice` CHANGE `created_at` `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP;
 4. ALTER TABLE `notice` ADD `updated_at` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `created_at`;
+
+PRASUN-Date:19/09/2022
+1. ALTER TABLE `tender` ADD `status` ENUM('1','0') NOT NULL AFTER `submission_date`, ADD `is_deleted` ENUM('1','0') NOT NULL DEFAULT '0' AFTER `status`;
+2. ALTER TABLE `notice` ADD `status` ENUM('1','0') NOT NULL AFTER `notice`, ADD `is_deleted` ENUM('1','0') NOT NULL AFTER `status`;
+3. ALTER TABLE `notice` CHANGE `is_deleted` `is_deleted` ENUM('1','0') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT '0';

@@ -11,6 +11,7 @@ if (isset($_POST['submit'])) {
   $publication_date = $_POST['publication_date'];
   $tender_type = $_POST['tender_type'];
   $submission_date = $_POST['submission_date'];
+  @$status = $_POST['status']==true ? '1' : '0';
   if ($_FILES['tender_notice']['name'] == '') {
     $actual_file = $_POST['tender_notice_old'];
   } else {
@@ -43,7 +44,7 @@ if (isset($_POST['submit'])) {
 
 
   //Query for data updation
-  $query = mysqli_query($conn, "update  tender set tender_no='$tender_no',tender_type='$tender_type',title='$title', tender_notice='$actual_file', publication_date='$publication_date', submission_date='$submission_date' where ID='$eid'");
+  $query = mysqli_query($conn, "update  tender set tender_no='$tender_no',tender_type='$tender_type',title='$title', tender_notice='$actual_file', publication_date='$publication_date', submission_date='$submission_date',status='$status' where ID='$eid'");
 
   if ($query) {
     echo "<script>alert('You have successfully update the data');</script>";
@@ -155,6 +156,14 @@ while ($row = mysqli_fetch_array($ret)) {
                           <label class="col-sm-2 col-form-label" for="basic-default-company">Submission Date</label>
                           <div class="col-sm-10">
                             <input type="date" class="form-control" id="submission_date" name="submission_date" value="<?php echo $row['submission_date']; ?>" required placeholder="Submission Date" />
+                          </div>
+                        </div>
+                        <div class="row mb-3">
+                          <label class="col-sm-2 col-form-label" for="basic-default-email">Status</label>
+                          <div class="col-sm-10">
+                            <div class="input-group input-group-merge">
+                              <input type="checkbox" id="status" name="status" value="1"<?php if($row["status"]=='1') { ?> checked <?php } ?> class="" />
+                            </div>
                           </div>
                         </div>
                       <?php

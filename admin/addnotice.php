@@ -8,6 +8,7 @@ if (isset($_POST['submit'])) {
   //getting the post values
   $notice_no = $_POST['notice_no'];
   $title = $_POST['title'];
+  @$status = $_POST['status']==true ? '1' : '0';
   $filename = $_FILES["notice"]["name"];
   $file_name = $_FILES['notice']['name'];
   $extension = substr($file_name, strlen($file_name) - 4, strlen($file_name));
@@ -33,7 +34,7 @@ if (isset($_POST['submit'])) {
   }
 
   // Query for data insertion
-  $query = mysqli_query($conn, "insert into notice(notice_no,title, notice) value('$notice_no','$title', '$actual_file' )");
+  $query = mysqli_query($conn, "insert into notice(notice_no,title, notice,status) value('$notice_no','$title', '$actual_file','$status')");
   if ($query) {
     echo "<script>alert('You have successfully inserted the data');</script>";
     echo "<script type='text/javascript'> document.location ='notice.php'; </script>";
@@ -106,12 +107,17 @@ include('admin_head.php');
                         <div class="col-sm-10">
                           <div class="input-group input-group-merge">
                             <input type="file" id="notice" name="notice" required class="form-control" />
-
                           </div>
                         </div>
                       </div>
-
-
+                      <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="basic-default-email">Status</label>
+                        <div class="col-sm-10">
+                          <div class="input-group input-group-merge">
+                            <input type="checkbox" id="status" name="status" value="1" class="" />
+                          </div>
+                        </div>
+                      </div>
                       <div class="row justify-content-end">
                         <div class="col-sm-10">
                           <button type="submit" class="btn btn-primary" name="submit">Submit</button>

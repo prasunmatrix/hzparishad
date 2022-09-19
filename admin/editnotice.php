@@ -8,6 +8,7 @@ if (isset($_POST['submit'])) {
   //Getting Post Values
   $notice_no = $_POST['notice_no'];
   $title = $_POST['title'];
+  @$status = $_POST['status'] == true ? '1' : '0';
   if ($_FILES['notice']['name'] == '') {
     $actual_file = $_POST['notice_old'];
   } else {
@@ -32,13 +33,13 @@ if (isset($_POST['submit'])) {
       //$upload_dir = $_SERVER['DOCUMENT_ROOT'] . "/hzparishad/assets/uploads/";
       $upload_dir = "../assets/uploads/notice/";
       move_uploaded_file($file_tmp, "$upload_dir" . $actual_file);
-      unlink($upload_dir.$_POST['notice_old']);
+      unlink($upload_dir . $_POST['notice_old']);
     }
   }
 
 
   //Query for data updation
-  $query = mysqli_query($conn, "update  notice set notice_no='$notice_no',title='$title', notice='$actual_file' where ID='$eid'");
+  $query = mysqli_query($conn, "update  notice set notice_no='$notice_no',title='$title', notice='$actual_file',status='$status' where ID='$eid'");
 
   if ($query) {
     echo "<script>alert('You have successfully update the data');</script>";
@@ -118,19 +119,25 @@ while ($row = mysqli_fetch_array($ret)) {
                           <div class="col-sm-10">
                             <div class="input-group input-group-merge">
                               <input type="file" id="notice" name="notice" class="form-control" />
-
                               <input type="hidden" name="notice_old" value="<?php echo $row['notice']; ?>" />
-
                             </div>
                           </div>
                         </div>
                         <div>
                           <label class="col-sm-2 col-form-label" for="basic-default-email">Pdf</label>
                           <iframe src="../assets/uploads/notice/<?php echo $row['notice']; ?>" width="20%"></iframe>
+                        </div><br>
+                        <div class="row mb-3">
+                          <label class="col-sm-2 col-form-label" for="basic-default-email">Status</label>
+                          <div class="col-sm-10">
+                            <div class="input-group input-group-merge">
+                              <input type="checkbox" id="status" name="status" value="1" <?php if ($row["status"] == '1') { ?> checked <?php } ?> class="" />
+                            </div>
+                          </div>
                         </div>
-
                       <?php
-                    } ?>
+                    }
+                      ?>
                       <div class="row justify-content-end">
                         <div class="col-sm-10">
                           <button type="submit" class="btn btn-primary" name="submit">Submit</button>

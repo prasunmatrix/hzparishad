@@ -7,11 +7,11 @@ if ($_REQUEST['action'] == 'example') {
   @$to_date = $_REQUEST['to_date'];
   if(!empty($frm_date) && !empty($to_date)){   
     //echo "select * from tender WHERE publication_date BETWEEN '$frm_date' AND '$to_date'"; die;
-    $sql = "select * from tender WHERE publication_date BETWEEN '$frm_date' AND '$to_date'";
+    $sql = "select * from tender WHERE status='1' AND is_deleted='0' AND publication_date BETWEEN '$frm_date' AND '$to_date'";
   }
   else
   {
-    $sql = "select id, tender_no, tender_type,title,tender_notice,publication_date,submission_date from tender";
+    $sql = "select id, tender_no, tender_type,title,tender_notice,publication_date,submission_date from tender WHERE status='1' AND is_deleted='0'";
   }
   $result = mysqli_query($conn, $sql);
 

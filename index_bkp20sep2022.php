@@ -3,8 +3,6 @@
 include_once('header.php');
 include_once("conn.php");
 $result = mysqli_query($conn, "SELECT * FROM banner where is_deleted='0' and status='1' ORDER BY id DESC");
-$result_tender = mysqli_query($conn, "SELECT * FROM tender where is_deleted='0' and status='1' ORDER BY id DESC LIMIT 0,5");
-$result_notice = mysqli_query($conn, "SELECT * FROM notice where is_deleted='0' and status='1' ORDER BY id DESC LIMIT 0,5");
 ?>
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="d-flex align-items-center">
@@ -63,19 +61,14 @@ $result_notice = mysqli_query($conn, "SELECT * FROM notice where is_deleted='0' 
           <div class="scroll-wrapper">
             <h3>Tenders</h3>
             <marquee width="100%" direction="up" height="100px">
-            <?php
-              while ($row_tender = mysqli_fetch_array($result_tender)) {
-            ?>
-              <a href="assets/uploads/tender/<?php echo $row_tender['tender_notice']; ?>" target="_blank"><?php echo $row_tender['title']; ?></a>
+              <a href="assets/pdf/Tenders.pdf" target="_blank">1)Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do.
+              </a>
               </br></br>
-            <?php
-              }
-            ?>      
-              <!-- <a href="assets/pdf/Tenders.pdf" target="_blank">2)Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do .
+              <a href="assets/pdf/Tenders.pdf" target="_blank">2)Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do .
               </a>
               </br></br>
               <a href="assets/pdf/Tenders.pdf" target="_blank">3)Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do .
-              </a> -->
+              </a>
             </marquee>
 
           </div>
@@ -83,16 +76,11 @@ $result_notice = mysqli_query($conn, "SELECT * FROM notice where is_deleted='0' 
           <div class="scroll-wrapper">
             <h3>Notices</h3>
             <marquee width="100%" direction="up" height="100px">
-            <?php
-              while ($row_notice = mysqli_fetch_array($result_notice)) {
-            ?>
-              <a href="assets/uploads/notice/<?php echo $row_notice['notice']; ?>" target="_blank"><?php echo $row_notice['title']; ?></a>
+              <a href="assets/pdf/Tenders.pdf" target="_blank">1)Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              </a>
               </br></br>
-            <?php
-              }
-            ?>  
-              <!-- <a href="assets/pdf/Tenders.pdf" target="_blank">2)Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do .
-              </a> -->
+              <a href="assets/pdf/Tenders.pdf" target="_blank">2)Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do .
+              </a>
             </marquee>
 
           </div>

@@ -9,11 +9,11 @@ if ($_REQUEST['action'] == 'example') {
     $frm_date=$frm_date.' 00:00:01';
     $to_date=$to_date.' 23:59:59';
     //echo "select * from notice WHERE created_at BETWEEN '$frm_date' AND '$to_date'"; die;
-    $sql = "select * from notice WHERE created_at BETWEEN '$frm_date' AND '$to_date'";
+    $sql = "select * from notice WHERE status='1' AND is_deleted='0' AND created_at BETWEEN '$frm_date' AND '$to_date'";
   }
   else
   {
-    $sql = "select * from notice";
+    $sql = "select * from notice WHERE status='1' AND is_deleted='0'";
   }
   $result = mysqli_query($conn, $sql);
   //print_r($result); die; 

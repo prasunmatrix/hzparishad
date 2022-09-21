@@ -1,0 +1,11 @@
+<?php
+session_start();
+if(isset($_SESSION['login_user']))
+{
+  header('Location:tender.php');
+}
+else
+{ 
+  header('Location:login.php');
+}
+?>

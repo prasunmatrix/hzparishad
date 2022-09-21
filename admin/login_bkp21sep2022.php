@@ -1,10 +1,7 @@
 <?php
 include_once("../conn.php");
 session_start();
-if(isset($_SESSION['login_user'])){
-  header("location:tender.php");
-  die();
-}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // username and password sent from form 
 

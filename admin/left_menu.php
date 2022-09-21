@@ -3,7 +3,7 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
 ?>
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
   <div class="app-brand demo">
-    <a href="index.html" class="app-brand-link">
+    <a href="tender.php" class="app-brand-link">
       <span class="app-brand-logo demo"> <img src="https://www.demoyourprojects.com/hzparishad/assets/img/logo.png" alt="Girl in a jacket" style="max-width:15%">
       </span>
     </a>

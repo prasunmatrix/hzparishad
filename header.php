@@ -70,7 +70,7 @@
                      </ul>
                   </li>
                   
-                  <li><a class="nav-link" href="#">Success Stories</a></li>
+                  <li><a class="nav-link" href="success_stories.php">Success Stories</a></li>
                   <li><a class="nav-link" href="tender.php">Tender</a><img src="assets/img/newbling.gif" class="newbling"></li>
                   <li><a class="nav-link" href="notice.php">Notice</a><img src="assets/img/newbling.gif" class="newbling"></li>
                   <li><a class="nav-link" href="contact-us.php">Contact Us</a></li>

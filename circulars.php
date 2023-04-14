@@ -8,7 +8,7 @@
          <section class="breadcrumbs">
             <div class="container">
                <ol>
-                  <li><a href="https://www.demoyourprojects.com/hzparishad/">Home</a></li>
+                  <li><a href="https://howrahzillaparishad.in/">Home</a></li>
                   <li>Circulars</li>
                </ol>
                <h2>Circulars</h2>
@@ -25,6 +25,7 @@
                      </div>
                   <div class="col-lg-9">
                      <h3>Circulars</h3>
+                     <p>This page is under construction.</p>
                   </div>
                </div>             
             </div>

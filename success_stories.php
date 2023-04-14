@@ -9,9 +9,9 @@
             <div class="container">
                <ol>
                   <li><a href="https://howrahzillaparishad.in/">Home</a></li>
-                  <li>Department/Sections</li>
+                  <li>Success Stories</li>
                </ol>
-               <h2>Department/Sections</h2>
+               <h2>Success Stories</h2>
             </div>
          </section>
          <!-- End Breadcrumbs -->
@@ -24,8 +24,8 @@
                      ?>
                      </div>
                   <div class="col-lg-9">
-                    <h3>Department/Sections</h3>
-                    <p>This page is under construction.</p>
+                     <h3>Success Stories</h3>
+										 <p>This page is under construction.</p>
                   </div>
                </div>             
             </div>

@@ -12,7 +12,7 @@
    <section class="breadcrumbs">
       <div class="container">
          <ol>
-            <li><a href="https://howrahzillaparishad.in/">Home</a></li>
+            <li><a href="https://www.demoyourprojects.com/hzparishad/">Home</a></li>
             <li>Contact Us</li>
          </ol>
          <h2>Contact Us</h2>
@@ -49,7 +49,7 @@
                            <div class="info-box mt-4">
                               <i class="bx bx-envelope"></i>
                               <h3>Email Us</h3>
-                              <p>miscellhowrahzp@gmail.com</p>
+                              <p>misscellhowrahzp@gmail.com</p>
                            </div>
                         </div>
                         <div class="col-md-6">

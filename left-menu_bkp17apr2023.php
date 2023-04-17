@@ -12,10 +12,10 @@
          <li class="dropdown">
             <a href="#"><span>Organizational Structure</span> <i class="bi bi-chevron-right"></i></a>
             <ul>
-               <li><a href="members.php">Members</a></li>
-               <li><a href="sthayee_samitis.php">Sthayee Samitis</a></li>
-               <li><a href="key_officials.php">Key Officials</a></li>
-               <li><a href="staff_details.php">Staff Details</a></li>                        
+               <li><a href="#">Members</a></li>
+               <li><a href="#">Sthayee Samitis</a></li>
+               <li><a href="#">Key Officials</a></li>
+               <li><a href="#">Staff Details</a></li>                        
             </ul>
          </li>
          <li class="dropdown">
@@ -42,12 +42,12 @@
          <li class="dropdown">
             <a href="#"><span>Citizen Corner</span> <i class="bi bi-chevron-right"></i></a>
             <ul>
-               <li><a href="building_plan_sanction.php">Building Plan Sanction</a></li>
-               <li><a href="rent.php">Rent</a></li>
-               <li><a href="mela_permission.php">Mela Permission</a></li>
-               <li><a href="online_payment.php">Online Payment</a></li>
-               <li><a href="market_shopping_complexes.php">Market & Shopping Complexes</a></li>
-               <li><a href="ferry_ghats.php">Ferry Ghats</a></li>
+               <li><a href="#">Building Plan Sanction</a></li>
+               <li><a href="#">Rent</a></li>
+               <li><a href="#">Mela Permission</a></li>
+               <li><a href="#">Online Payment</a></li>
+               <li><a href="#">Market & Shopping Complexes</a></li>
+               <li><a href="#">Ferry Ghats</a></li>
             </ul>
          </li>
         

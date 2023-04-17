@@ -25,7 +25,7 @@ include_once('header.php');
   <section class="breadcrumbs">
     <div class="container">
       <ol>
-        <li><a href="https://www.demoyourprojects.com/hzparishad/">Home</a></li>
+        <li><a href="index.php">Home</a></li>
         <li>Latest Tender</li>
       </ol>
       <h2>Latest Tender</h2>

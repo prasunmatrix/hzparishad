@@ -8,7 +8,7 @@
    <section class="breadcrumbs">
       <div class="container">
          <ol>
-            <li><a href="https://www.demoyourprojects.com/hzparishad/">Home</a></li>
+            <li><a href="index.php">Home</a></li>
             <li>District Profile</li>
          </ol>
          <h2>District Profile</h2>

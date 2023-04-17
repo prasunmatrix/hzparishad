@@ -12,7 +12,7 @@
    <section class="breadcrumbs">
       <div class="container">
          <ol>
-            <li><a href="https://howrahzillaparishad.in/">Home</a></li>
+            <li><a href="index.php">Home</a></li>
             <li>Contact Us</li>
          </ol>
          <h2>Contact Us</h2>

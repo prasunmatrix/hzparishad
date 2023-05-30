@@ -24,8 +24,8 @@ include_once('header.php');
           ?>
         </div>
         <div class="col-lg-9">
-          <h3>Key Officials</h3>
-          <p>This page is under construction.</p>
+          <a href="assets/uploads/member_document/staff_details.pdf" target="_blank"><h3>Key Officials</h3></a>
+          <!-- <p>This page is under construction.</p> -->
         </div>
       </div>
     </div>

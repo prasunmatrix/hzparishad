@@ -24,8 +24,8 @@ include_once('header.php');
           ?>
         </div>
         <div class="col-lg-9">
-          <h3>Sthayee Samitis</h3>
-          <p>This page is under construction.</p>
+          <a href="assets/uploads/member_document/sthayee_samitis.pdf" target="_blank"><h3>Sthayee Samitis</h3></a>
+          <!-- <p>This page is under construction.</p> -->
         </div>
       </div>
     </div>

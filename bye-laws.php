@@ -25,7 +25,7 @@ include_once('header.php');
         </div>
         <div class="col-lg-9">
           <h3>Bye-Laws</h3>
-          <p>This page is under construction.</p>
+          <a href="assets/uploads/bye-laws_document/ammendment_of_byelaw_2019_publish_11-12-2020.pdf" target="_blank"><p>HOWRAH ZILLA PARISHAD BYE-LAW 2005 WITH AMENDMENT-2019</p></a>
         </div>
       </div>
     </div>

@@ -117,9 +117,10 @@ include_once('footer.php');
     $(document).ready(function() {
       // alert('aaa');
       $('#example').dataTable({
+        "order": [[ 4, "desc" ]],
         "processing": true,
         "bDestroy": true,
-        "stateSave": true,
+        //"stateSave": true,
         //"ajax": "fetch_tender_record.php",
         "lengthMenu": [
           [10, 25, 50, 100, -1],

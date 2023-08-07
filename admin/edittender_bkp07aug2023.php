@@ -7,9 +7,7 @@ if (isset($_POST['submit'])) {
   $eid = $_GET['editid'];
   //Getting Post Values
   $tender_no = $_POST['tender_no'];
-  $tender_no=preg_replace('/[^A-Za-z0-9\-]/', '', $tender_no);
   $title = $_POST['title'];
-  $title=preg_replace('/[^A-Za-z0-9\-]/', '', $title);
   $publication_date = $_POST['publication_date'];
   $tender_type = $_POST['tender_type'];
   $submission_date = $_POST['submission_date'];
@@ -138,7 +136,7 @@ while ($row = mysqli_fetch_array($ret)) {
                           <label class="col-sm-2 col-form-label" for="basic-default-email">Tender Notice</label>
                           <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                              <input type="file" id="tender_notice" name="tender_notice" class="form-control" accept="application/pdf" />
+                              <input type="file" id="tender_notice" name="tender_notice" class="form-control" />
                               <input type="hidden" name="tender_notice_old" value="<?php echo $row['tender_notice']; ?>" />
 
                             </div>

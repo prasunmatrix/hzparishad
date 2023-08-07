@@ -7,9 +7,7 @@ include_once("../conn.php");
 if (isset($_POST['submit'])) {
   //getting the post values
   $notice_no = $_POST['notice_no'];
-  $notice_no=preg_replace('/[^A-Za-z0-9\-]/', '', $notice_no);
   $title = $_POST['title'];
-  $title=preg_replace('/[^A-Za-z0-9\-]/', '', $title);
   @$status = $_POST['status']==true ? '1' : '0';
   $filename = $_FILES["notice"]["name"];
   $file_name = $_FILES['notice']['name'];
@@ -108,7 +106,7 @@ include('admin_head.php');
                         <label class="col-sm-2 col-form-label" for="basic-default-email">Notice</label>
                         <div class="col-sm-10">
                           <div class="input-group input-group-merge">
-                            <input type="file" id="notice" name="notice" required class="form-control" accept="application/pdf" />
+                            <input type="file" id="notice" name="notice" required class="form-control" />
                           </div>
                         </div>
                       </div>

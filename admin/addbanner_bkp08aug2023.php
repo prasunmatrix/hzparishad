@@ -5,35 +5,36 @@ include_once("../conn.php");
 <?php
 if (isset($_POST['submit'])) {
   //getting the post values
-  $video_title = $_POST['video_title'];
-  $video_title=preg_replace('/[^A-Za-z0-9\-]/', '', $video_title);
+  $banner_title = $_POST['banner_title'];
   @$status = $_POST['status']==true ? '1' : '0'; 
-  $file_name = $_FILES['video']['name'];
-  $file_size = $_FILES["video"]["size"];
-  //$extension = substr($file_name, strlen($file_name) - 4, strlen($file_name));
-  //$allowed_extensions = array('.jpg','.png','.jpeg');
+  $filename = $_FILES["banner_image"]["name"];
+  $file_name = $_FILES['banner_image']['name'];
+  $extension = substr($file_name, strlen($file_name) - 4, strlen($file_name));
+  $allowed_extensions = array('.jpg','.png','.jpeg');
   // Validation for allowed extensions .in_array() function searches an array for a specific value.
-  if ($file_size > 2097152) {
-    echo "<script>alert('File size must be excately 2 MB');</script>";
-    echo "<script>window.location.href = 'addvideogallery.php'</script>";
+  if (!in_array($extension, $allowed_extensions)) {
+    echo "<script>alert('Invalid format. Only jpeg,jpg,png format allowed');</script>";
+    echo "<script>window.location.href = 'addbanner.php'</script>";
     die;
   } else {
-    $file_tmp = $_FILES['video']['tmp_name'];
+    //rename the image file
+    // $imgnewfile=md5($imgfile).time().$extension;
+    $file_tmp = $_FILES['banner_image']['tmp_name'];
     $ext = pathinfo($file_name, PATHINFO_EXTENSION);
     $file = basename($file_name, "." . $ext); 
     $actual_file = time() . "." . $ext;
     // $target = dirname(__FILE__)."/assets/";
-    $upload_dir ="../assets/uploads/video_gallery/";
+    $upload_dir ="../assets/uploads/banner/";
     //$upload_dir = $_SERVER['DOCUMENT_ROOT'] . "/matrixmedia/hzparishad/assets/uploads/banner/"; 
     move_uploaded_file($file_tmp, "$upload_dir" . $actual_file);
   }
 
 
   // Query for data insertion
-  $query = mysqli_query($conn, "insert into video_gallery(video_title,video,status) value('$video_title','$actual_file','$status')");
+  $query = mysqli_query($conn, "insert into banner(banner_title,banner_image,status) value('$banner_title','$actual_file','$status')");
   if ($query) {
     echo "<script>alert('You have successfully inserted the data');</script>";
-    echo "<script type='text/javascript'> document.location ='videogallery.php'; </script>";
+    echo "<script type='text/javascript'> document.location ='banner.php'; </script>";
   } else {
     echo "<script>alert('Something Went Wrong. Please try again');</script>";
   }
@@ -73,7 +74,7 @@ include('admin_head.php');
           <!-- Content -->
 
           <div class="container-xxl flex-grow-1 container-p-y">
-            <h4 class="fw-bold py-3 mb-4"> Add Video Gallery</h4>
+            <h4 class="fw-bold py-3 mb-4"> Add Banner</h4>
 
             <!-- Basic Layout & Basic with Icons -->
             <div class="row">
@@ -81,24 +82,40 @@ include('admin_head.php');
               <div class="col-xxl">
                 <div class="card mb-4">
                   <div class="card-header d-flex align-items-center justify-content-between">
-                    <h5 class="mb-0">Add Video Gallery</h5>
+                    <h5 class="mb-0">Add Banner</h5>
                     <small class="text-muted float-end"></small>
                   </div>
                   <div class="card-body">
                     <form method="post" enctype="multipart/form-data">
                       <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="basic-default-name">Video Title</label>
+                        <label class="col-sm-2 col-form-label" for="basic-default-name">Banner Title</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" name="video_title" required id="video_title" placeholder="Video Title" />
+                          <input type="text" class="form-control" name="banner_title" required id="banner_title" placeholder="Banner Title" />
                         </div>
                       </div>
+                      <!-- <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="basic-default-name">Tender Type</label>
+                        <div class="col-sm-10">
+                          <select class="form-select" id="tender_type" required name="tender_type" aria-label="Default select example">
+                            <option value="Paper Tender">Paper Tender</option>
+                            <option value="E-Tender">E-Tender</option>
+                          </select>
+                        </div>
+                      </div> -->
+
+                      <!-- <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="basic-default-company">Title</label>
+                        <div class="col-sm-10">
+                          <textarea id="title" name="title" class="form-control" placeholder="Title" required aria-describedby="basic-icon-default-message2"></textarea>
+                        </div>
+                      </div> -->
                       <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="basic-default-email">Video</label>
+                        <label class="col-sm-2 col-form-label" for="basic-default-email">Banner Image</label>
                         <div class="col-sm-10">
                           <div class="input-group input-group-merge">
-                            <input type="file" id="video" name="video" required class="form-control" accept="video/mp4,video/x-m4v,video/*" />
+                            <input type="file" id="banner_image" name="banner_image" required class="form-control" />
                           </div>
-                          <span class="system required" style="color: red;">(Recommended Video Size: 2MB)*</span>
+                          <span class="system required" style="color: red;">(Recommended Image Size: 2000 × 600)*</span>
                         </div>
                       </div>
                       <div class="row mb-3">

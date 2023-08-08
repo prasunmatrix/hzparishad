@@ -6,42 +6,38 @@ include_once("../conn.php");
 if (isset($_POST['submit'])) {
   $eid = $_GET['editid'];
   //Getting Post Values
-  $banner_title = $_POST['banner_title'];
-  $banner_title=preg_replace('/[^A-Za-z0-9\-]/', '', $banner_title);
+  $video_title = $_POST['video_title'];
   @$status = $_POST['status']==true ? '1' : '0';
-  if ($_FILES['banner_image']['name'] == '') {
-    $actual_file = $_POST['banner_image_old'];
+  if ($_FILES['video']['name'] == '') {
+    $actual_file = $_POST['video_old'];
   } else {
-    $file_name = $_FILES['banner_image']['name'];
-    $extension = substr($file_name, strlen($file_name) - 4, strlen($file_name));
-    $allowed_extensions = array("jpg","png","jpeg");
+    $file_name = $_FILES['video']['name'];
+    $file_size = $_FILES["video"]["size"];
+    //$extension = substr($file_name, strlen($file_name) - 4, strlen($file_name));
+    //$allowed_extensions = array('.jpg','.png','.jpeg');
     // Validation for allowed extensions .in_array() function searches an array for a specific value.
-    if (!in_array($extension, $allowed_extensions)) {
-      echo "<script>alert('Invalid format. Only jpeg,jpg,png format allowed');</script>";
-      echo "<script>window.location.href = 'editbanner.php?editid=$eid'</script>";
+    if ($file_size > 2097152) {
+      echo "<script>alert('File size must be excately 2 MB');</script>";
+      echo "<script>window.location.href = 'editvideogallery.php?editid=$eid'</script>";
       die;
-    } else {
-      //rename the image file
-      // $imgnewfile=md5($imgfile).time().$extension;
-      $file_tmp = $_FILES['banner_image']['tmp_name'];
+    } else {      
+      $file_tmp = $_FILES['video']['tmp_name'];
       // $target = "admin/assets/";
-      $uploaded_name = $_FILES['banner_image']['name'];
       $ext = pathinfo($file_name, PATHINFO_EXTENSION);
       $file = basename($file_name, "." . $ext);
       $actual_file = time() . "." . $ext;
-      //$upload_dir = $_SERVER['DOCUMENT_ROOT'] . "/hzparishad/assets/uploads/";
-      $upload_dir = "../assets/uploads/banner/";
+      $upload_dir = "../assets/uploads/video_gallery/";
       move_uploaded_file($file_tmp, "$upload_dir" . $actual_file);
-      unlink($upload_dir.$_POST['banner_image_old']);
+      unlink($upload_dir.$_POST['video_old']);
     }
   }
 
 
   //Query for data updation
-  $query = mysqli_query($conn, "update  banner set banner_title='$banner_title',banner_image='$actual_file', status='$status' where ID='$eid'");
+  $query = mysqli_query($conn, "update  video_gallery set video_title='$video_title',video='$actual_file', status='$status' where ID='$eid'");
   if ($query) {
     echo "<script>alert('You have successfully update the data');</script>";
-    echo "<script type='text/javascript'> document.location ='banner.php'; </script>";
+    echo "<script type='text/javascript'> document.location ='videogallery.php'; </script>";
   } else {
     echo "<script>alert('Something Went Wrong. Please try again');</script>";
   }
@@ -49,7 +45,7 @@ if (isset($_POST['submit'])) {
 ?>
 <?php
 $eid = $_GET['editid'];
-$ret = mysqli_query($conn, "select * from banner where id='$eid'");
+$ret = mysqli_query($conn, "select * from video_gallery where id='$eid'");
 while ($row = mysqli_fetch_array($ret)) {
 ?>
 
@@ -101,24 +97,24 @@ while ($row = mysqli_fetch_array($ret)) {
                     <div class="card-body">
                       <form method="post" enctype="multipart/form-data">
                         <div class="row mb-3">
-                          <label class="col-sm-2 col-form-label" for="basic-default-name">Banner Title</label>
+                          <label class="col-sm-2 col-form-label" for="basic-default-name">Video Title</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" name="banner_title" required id="banner_title" value="<?php echo $row['banner_title']; ?>" placeholder="Banner Title" />
+                            <input type="text" class="form-control" name="video_title" required id="video_title" value="<?php echo $row['video_title']; ?>" placeholder="Banner Title" />
                           </div>
                         </div>
                         <div class="row mb-3">
-                          <label class="col-sm-2 col-form-label" for="basic-default-email">Banner Image</label>
+                          <label class="col-sm-2 col-form-label" for="basic-default-email">Video</label>
                           <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                              <input type="file" id="banner_image" name="banner_image" class="form-control"  accept="image/png,image/jpeg,image/jpg" />
-                              <input type="hidden" name="banner_image_old" value="<?php echo $row['banner_image']; ?>" />
+                              <input type="file" id="video" name="video" class="form-control" accept="video/mp4,video/x-m4v,video/*" />
+                              <input type="hidden" name="video_old" value="<?php echo $row['video']; ?>" />
                             </div>
-                            <span class="system required" style="color: red;">(Recommended Image Size: 2000 x 600)*</span>
+                            <span class="system required" style="color: red;">(Recommended Video Size: 2MB)*</span>
                           </div>
                         </div>
                         <div>
-                          <label class="col-sm-2 col-form-label" for="basic-default-email">Image</label>
-                          <img src="../assets/uploads/banner/<?php echo $row["banner_image"]; ?>" alt="<?php echo $row['banner_title']; ?>" width="100" height="100"> </img>
+                          <label class="col-sm-2 col-form-label" for="basic-default-email">Video</label>
+                          <video width="280" height="200" controls><source src="../assets/uploads/video_gallery/<?php echo $row["video"]; ?>">
                         </div><br>
                         <div class="row mb-3">
                           <label class="col-sm-2 col-form-label" for="basic-default-email">Status</label>

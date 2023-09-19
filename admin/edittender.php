@@ -9,7 +9,8 @@ if (isset($_POST['submit'])) {
   $tender_no = $_POST['tender_no'];
   $tender_no=preg_replace('/[^A-Za-z0-9\-]/', '', $tender_no);
   $title = $_POST['title'];
-  $title=preg_replace('/[^A-Za-z0-9\-]/', '', $title);
+  //$title=preg_replace('/[^A-Za-z0-9\-]/', '', $title);
+  $title=preg_replace('/[^A-Za-z0-9 ]/', '', $title); //Remove Special Characters from String Except Space
   $publication_date = $_POST['publication_date'];
   $tender_type = $_POST['tender_type'];
   $submission_date = $_POST['submission_date'];

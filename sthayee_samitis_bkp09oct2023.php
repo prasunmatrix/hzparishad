@@ -15,7 +15,7 @@ include_once('header.php');
     </div>
   </section>
   <!-- End Breadcrumbs -->
-  <section class="inner-page common_section">
+  <section class="inner-page">
     <div class="container" data-aos="fade-up">
       <div class="row">
         <div class="col-lg-3">
@@ -25,10 +25,10 @@ include_once('header.php');
         </div>
         <div class="col-lg-9">
           <a href="assets/uploads/member_document/sthayee_samitis.pdf" target="_blank">
-            <h2>Sthayee Samitis</h2>
+            <h3>Sthayee Samitis</h3>
           </a>
           <!-- <p>This page is under construction.</p> -->
-          <h3>Artha Sanstha O Unnayan Sthayee Samiti</h3>
+          <h2>Artha Sanstha O Unnayan Sthayee Samiti</h2>
           <table style="width:80%">
             <tr>
               <th>Sl. No.</th>
@@ -91,7 +91,7 @@ include_once('header.php');
               <td>Member</td>
             </tr>
           </table>
-          <div class="C-title_wrapper"><h3>Purto Karya O Paribhan Sthayee Samiti</h3></div>
+          <h2>Purto Karya O Paribhan Sthayee Samiti</h2>
           <table style="width:80%">
             <tr>
               <th>Sl. No.</th>
@@ -134,7 +134,7 @@ include_once('header.php');
               <td>Member</td>
             </tr>
           </table>
-          <div class="C-title_wrapper"><h3>Krishi-Sech-O-Samabay Sthayee Samiti</h3></div>
+          <h2>Krishi-Sech-O-Samabay Sthayee Samiti</h2>
           <table style="width:80%">
             <tr>
               <th>Sl. No.</th>
@@ -177,7 +177,7 @@ include_once('header.php');
               <td>Member</td>
             </tr>
           </table>
-          <div class="C-title_wrapper"><h3>Sikha Sanskriti Tathya O Krira Sthayee Samiti</h3></div>
+          <h2>Sikha Sanskriti Tathya O Krira Sthayee Samiti</h2>
           <table style="width:80%">
             <tr>
               <th>Sl. No.</th>
@@ -220,7 +220,7 @@ include_once('header.php');
               <td>Member</td>
             </tr>
           </table>
-          <div class="C-title_wrapper"><h3>Sisu O Nari Unnayan Janakalyan O Tran Sthayee Samiti</h3></div>
+          <h2>Sisu O Nari Unnayan Janakalyan O Tran Sthayee Samiti</h2>
           <table style="width:80%">
             <tr>
               <th>Sl. No.</th>
@@ -263,7 +263,7 @@ include_once('header.php');
               <td>Member</td>
             </tr>
           </table>
-          <div class="C-title_wrapper"><h3>Matsya O Prani Sampad Bikas Sthayee Samiti</h3></div>
+          <h2>Matsya O Prani Sampad Bikas Sthayee Samiti</h2>
           <table style="width:80%">
             <tr>
               <th>Sl. No.</th>
@@ -306,7 +306,7 @@ include_once('header.php');
               <td>Member</td>
             </tr>
           </table>
-          <div class="C-title_wrapper"><h3>Khadya O Sarbaraha Sthayee Samiti</h3></div>
+          <h2>Khadya O Sarbaraha Sthayee Samiti</h2>
           <table style="width:80%">
             <tr>
               <th>Sl. No.</th>
@@ -349,7 +349,7 @@ include_once('header.php');
               <td>Member</td>
             </tr>
           </table>
-          <div class="C-title_wrapper"><h3>Bon O Bhumi Sanskar Sthayee Samiti</h3></div>
+          <h2>Bon O Bhumi Sanskar Sthayee Samiti</h2>
           <table style="width:80%">
             <tr>
               <th>Sl. No.</th>
@@ -392,7 +392,7 @@ include_once('header.php');
               <td>Member</td>
             </tr>
           </table>
-          <div class="C-title_wrapper"><h3>Khudra Silpa Bidyut O Achiracharita Sakti Sthayee Samiti</h3></div>
+          <h2>Khudra Silpa Bidyut O Achiracharita Sakti Sthayee Samiti</h2>
           <table style="width:80%">
             <tr>
               <th>Sl. No.</th>
@@ -435,7 +435,7 @@ include_once('header.php');
               <td>Member</td>
             </tr>6
           </table>
-          <div class="C-title_wrapper"><h3>Janaswastha O Paribesh Sthayee Samiti</h3></div>
+          <h2>Janaswastha O Paribesh Sthayee Samiti</h2>
           <table style="width:80%">
             <tr>
               <th>Sl. No.</th>
@@ -485,11 +485,11 @@ include_once('header.php');
 </main>
 <!-- End #main -->
 <!-- ======= Footer ======= -->
-<!-- <style>
+<style>
 table, th, td {
   border: 1px solid black;
 }
-</style> -->
+</style>
 <?php
 include_once('footer.php');
 ?>

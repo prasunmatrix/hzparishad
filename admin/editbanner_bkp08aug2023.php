@@ -7,14 +7,13 @@ if (isset($_POST['submit'])) {
   $eid = $_GET['editid'];
   //Getting Post Values
   $banner_title = $_POST['banner_title'];
-  $banner_title=preg_replace('/[^A-Za-z0-9\-]/', '', $banner_title);
   @$status = $_POST['status']==true ? '1' : '0';
   if ($_FILES['banner_image']['name'] == '') {
     $actual_file = $_POST['banner_image_old'];
   } else {
     $file_name = $_FILES['banner_image']['name'];
     $extension = substr($file_name, strlen($file_name) - 4, strlen($file_name));
-    $allowed_extensions = array("jpg","png","jpeg");
+    $allowed_extensions = array('.jpg','.png','.jpeg');
     // Validation for allowed extensions .in_array() function searches an array for a specific value.
     if (!in_array($extension, $allowed_extensions)) {
       echo "<script>alert('Invalid format. Only jpeg,jpg,png format allowed');</script>";
@@ -110,10 +109,10 @@ while ($row = mysqli_fetch_array($ret)) {
                           <label class="col-sm-2 col-form-label" for="basic-default-email">Banner Image</label>
                           <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                              <input type="file" id="banner_image" name="banner_image" class="form-control"  accept="image/png,image/jpeg,image/jpg" />
+                              <input type="file" id="banner_image" name="banner_image" class="form-control" />
                               <input type="hidden" name="banner_image_old" value="<?php echo $row['banner_image']; ?>" />
                             </div>
-                            <span class="system required" style="color: red;">(Recommended Image Size: 2000 x 600)*</span>
+                            <span class="system required" style="color: red;">(Recommended Image Size: 2000 × 600)*</span>
                           </div>
                         </div>
                         <div>

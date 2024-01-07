@@ -6,42 +6,49 @@ include_once("../conn.php");
 if (isset($_POST['submit'])) {
   $eid = $_GET['editid'];
   //Getting Post Values
-  $banner_title = $_POST['banner_title'];
-  $banner_title=preg_replace('/[^A-Za-z0-9\-]/', '', $banner_title);
+  $tender_no = $_POST['tender_no'];
+  $title = $_POST['title'];
+  $publication_date = $_POST['publication_date'];
+  $tender_type = $_POST['tender_type'];
+  $submission_date = $_POST['submission_date'];
   @$status = $_POST['status']==true ? '1' : '0';
-  if ($_FILES['banner_image']['name'] == '') {
-    $actual_file = $_POST['banner_image_old'];
+  if ($_FILES['tender_notice']['name'] == '') {
+    $actual_file = $_POST['tender_notice_old'];
   } else {
-    $file_name = $_FILES['banner_image']['name'];
+    $file_name = $_FILES['tender_notice']['name'];
     $extension = substr($file_name, strlen($file_name) - 4, strlen($file_name));
-    $allowed_extensions = array("jpg","png","jpeg");
+    $allowed_extensions = array(".pdf");
     // Validation for allowed extensions .in_array() function searches an array for a specific value.
     if (!in_array($extension, $allowed_extensions)) {
-      echo "<script>alert('Invalid format. Only jpeg,jpg,png format allowed');</script>";
-      echo "<script>window.location.href = 'editbanner.php?editid=$eid'</script>";
+      echo "<script>alert('Invalid format. Only pdf format allowed');</script>";
+      echo "<script>window.location.href = 'addtender.php'</script>";
       die;
     } else {
       //rename the image file
       // $imgnewfile=md5($imgfile).time().$extension;
-      $file_tmp = $_FILES['banner_image']['tmp_name'];
+      $file_tmp = $_FILES['tender_notice']['tmp_name'];
       // $target = "admin/assets/";
-      $uploaded_name = $_FILES['banner_image']['name'];
+      $uploaded_name = $_FILES['tender_notice']['name'];
       $ext = pathinfo($file_name, PATHINFO_EXTENSION);
       $file = basename($file_name, "." . $ext);
+      //$actual_file = $file . "." . $ext;
       $actual_file = time() . "." . $ext;
+      // $target = dirname(__FILE__)."/assets/";
+      // $target = $target . basename( $_FILES['notice']['name']);
       //$upload_dir = $_SERVER['DOCUMENT_ROOT'] . "/hzparishad/assets/uploads/";
-      $upload_dir = "../assets/uploads/banner/";
+      $upload_dir = "../assets/uploads/tender/";
       move_uploaded_file($file_tmp, "$upload_dir" . $actual_file);
-      unlink($upload_dir.$_POST['banner_image_old']);
+      unlink($upload_dir.$_POST['tender_notice_old']);
     }
   }
 
 
   //Query for data updation
-  $query = mysqli_query($conn, "update  banner set banner_title='$banner_title',banner_image='$actual_file', status='$status' where ID='$eid'");
+  $query = mysqli_query($conn, "update  tender set tender_no='$tender_no',tender_type='$tender_type',title='$title', tender_notice='$actual_file', publication_date='$publication_date', submission_date='$submission_date',status='$status' where ID='$eid'");
+
   if ($query) {
     echo "<script>alert('You have successfully update the data');</script>";
-    echo "<script type='text/javascript'> document.location ='banner.php'; </script>";
+    echo "<script type='text/javascript'> document.location ='tender.php'; </script>";
   } else {
     echo "<script>alert('Something Went Wrong. Please try again');</script>";
   }
@@ -49,7 +56,7 @@ if (isset($_POST['submit'])) {
 ?>
 <?php
 $eid = $_GET['editid'];
-$ret = mysqli_query($conn, "select * from banner where id='$eid'");
+$ret = mysqli_query($conn, "select * from tender where id='$eid'");
 while ($row = mysqli_fetch_array($ret)) {
 ?>
 
@@ -101,25 +108,56 @@ while ($row = mysqli_fetch_array($ret)) {
                     <div class="card-body">
                       <form method="post" enctype="multipart/form-data">
                         <div class="row mb-3">
-                          <label class="col-sm-2 col-form-label" for="basic-default-name">Banner Title</label>
+                          <label class="col-sm-2 col-form-label" for="basic-default-name">Tender No</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" name="banner_title" required id="banner_title" value="<?php echo $row['banner_title']; ?>" placeholder="Banner Title" />
+                            <input type="text" class="form-control" name="tender_no" value="<?php echo $row['tender_no']; ?>" required id="tender_no" placeholder="Tender No" />
                           </div>
                         </div>
                         <div class="row mb-3">
-                          <label class="col-sm-2 col-form-label" for="basic-default-email">Banner Image</label>
+                          <label class="col-sm-2 col-form-label" for="basic-default-name">Tender Type</label>
+                          <div class="col-sm-10">
+                            <select class="form-select" id="tender_type" required name="tender_type" aria-label="Default select example">
+                              <option value="Paper Tender" <?php if ($row['tender_type'] == 'Paper Tender') {
+                                                              echo 'selected';
+                                                            } ?>>Paper Tender</option>
+                              <option value="E-Tender" <?php if ($row['tender_type'] == 'E-Tender') {
+                                                          echo 'selected';
+                                                        } ?>>E-Tender</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="row mb-3">
+                          <label class="col-sm-2 col-form-label" for="basic-default-company">Title</label>
+                          <div class="col-sm-10">
+                            <textarea id="title" name="title" class="form-control" placeholder="Title" required aria-describedby="basic-icon-default-message2"><?php echo $row['title']; ?> </textarea>
+                          </div>
+                        </div>
+                        <div class="row mb-3">
+                          <label class="col-sm-2 col-form-label" for="basic-default-email">Tender Notice</label>
                           <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                              <input type="file" id="banner_image" name="banner_image" class="form-control"  accept="image/png,image/jpeg,image/jpg" />
-                              <input type="hidden" name="banner_image_old" value="<?php echo $row['banner_image']; ?>" />
+                              <input type="file" id="tender_notice" name="tender_notice" class="form-control" />
+                              <input type="hidden" name="tender_notice_old" value="<?php echo $row['tender_notice']; ?>" />
+
                             </div>
-                            <span class="system required" style="color: red;">(Recommended Image Size: 2000 x 600)*</span>
                           </div>
                         </div>
                         <div>
-                          <label class="col-sm-2 col-form-label" for="basic-default-email">Image</label>
-                          <img src="../assets/uploads/banner/<?php echo $row["banner_image"]; ?>" alt="<?php echo $row['banner_title']; ?>" width="100" height="100"> </img>
-                        </div><br>
+                          <label class="col-sm-2 col-form-label" for="basic-default-email">Pdf</label>
+                          <iframe src="../assets/uploads/tender/<?php echo $row['tender_notice']; ?>" width="20%"></iframe>
+                        </div>
+                        <div class="row mb-3">
+                          <label class="col-sm-2 col-form-label" for="basic-default-company">Publication Date</label>
+                          <div class="col-sm-10">
+                            <input type="date" class="form-control" id="publication_date" name="publication_date" value="<?php echo $row['publication_date']; ?>" required placeholder="Publication Date" />
+                          </div>
+                        </div>
+                        <div class="row mb-3">
+                          <label class="col-sm-2 col-form-label" for="basic-default-company">Submission Date</label>
+                          <div class="col-sm-10">
+                            <input type="date" class="form-control" id="submission_date" name="submission_date" value="<?php echo $row['submission_date']; ?>" required placeholder="Submission Date" />
+                          </div>
+                        </div>
                         <div class="row mb-3">
                           <label class="col-sm-2 col-form-label" for="basic-default-email">Status</label>
                           <div class="col-sm-10">

@@ -7,7 +7,9 @@ if (isset($_POST['submit'])) {
   $eid = $_GET['editid'];
   //Getting Post Values
   $notice_no = $_POST['notice_no'];
+  $notice_no=preg_replace('/[^A-Za-z0-9\-]/', '', $notice_no);
   $title = $_POST['title'];
+  $title=preg_replace('/[^A-Za-z0-9\-]/', '', $title);
   @$status = $_POST['status'] == true ? '1' : '0';
   if ($_FILES['notice']['name'] == '') {
     $actual_file = $_POST['notice_old'];
@@ -118,7 +120,7 @@ while ($row = mysqli_fetch_array($ret)) {
                           <label class="col-sm-2 col-form-label" for="basic-default-email">Notice</label>
                           <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                              <input type="file" id="notice" name="notice" class="form-control" />
+                              <input type="file" id="notice" name="notice" class="form-control" accept="application/pdf" />
                               <input type="hidden" name="notice_old" value="<?php echo $row['notice']; ?>" />
                             </div>
                           </div>

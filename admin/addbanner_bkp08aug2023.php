@@ -5,46 +5,36 @@ include_once("../conn.php");
 <?php
 if (isset($_POST['submit'])) {
   //getting the post values
-  $tender_no = $_POST['tender_no'];
-  $tender_no=preg_replace('/[^A-Za-z0-9\-]/', '', $tender_no);
-  $title = $_POST['title'];
-  //$title=preg_replace('/[^A-Za-z0-9\-]/', '', $title);
-  $title=preg_replace('/[^A-Za-z0-9 ]/', '', $title); //Remove Special Characters from String Except Space
-  $publication_date = $_POST['publication_date'];
-  $tender_type = $_POST['tender_type'];
-  $submission_date = $_POST['submission_date'];
-  @$status = $_POST['status']==true ? '1' : '0';
-  $filename = $_FILES["tender_notice"]["name"];
-  $file_name = $_FILES['tender_notice']['name'];
+  $banner_title = $_POST['banner_title'];
+  @$status = $_POST['status']==true ? '1' : '0'; 
+  $filename = $_FILES["banner_image"]["name"];
+  $file_name = $_FILES['banner_image']['name'];
   $extension = substr($file_name, strlen($file_name) - 4, strlen($file_name));
-  $allowed_extensions = array(".pdf");
+  $allowed_extensions = array('.jpg','.png','.jpeg');
   // Validation for allowed extensions .in_array() function searches an array for a specific value.
   if (!in_array($extension, $allowed_extensions)) {
-    echo "<script>alert('Invalid format. Only pdf format allowed');</script>";
-    echo "<script>window.location.href = 'addtender.php'</script>";
+    echo "<script>alert('Invalid format. Only jpeg,jpg,png format allowed');</script>";
+    echo "<script>window.location.href = 'addbanner.php'</script>";
     die;
   } else {
-    $file_tmp = $_FILES['tender_notice']['tmp_name'];
-    // $target = "admin/assets/";
-    $uploaded_name = $_FILES['tender_notice']['name'];
+    //rename the image file
+    // $imgnewfile=md5($imgfile).time().$extension;
+    $file_tmp = $_FILES['banner_image']['tmp_name'];
     $ext = pathinfo($file_name, PATHINFO_EXTENSION);
-    $file = basename($file_name, "." . $ext);
-    //$actual_file=$file.".".$ext;
+    $file = basename($file_name, "." . $ext); 
     $actual_file = time() . "." . $ext;
     // $target = dirname(__FILE__)."/assets/";
-    // $target = $target . basename( $_FILES['notice']['name']);
-    //  $upload_dir ="assets/uploads/";
-    //$upload_dir = $_SERVER['DOCUMENT_ROOT'] . "/hzparishad/assets/uploads/";
-    $upload_dir = "../assets/uploads/tender/";
+    $upload_dir ="../assets/uploads/banner/";
+    //$upload_dir = $_SERVER['DOCUMENT_ROOT'] . "/matrixmedia/hzparishad/assets/uploads/banner/"; 
     move_uploaded_file($file_tmp, "$upload_dir" . $actual_file);
   }
 
 
   // Query for data insertion
-  $query = mysqli_query($conn, "insert into tender(tender_no,title,tender_type, tender_notice, publication_date, submission_date,status) value('$tender_no','$title','$tender_type', '$actual_file', '$publication_date', '$submission_date','$status')");
+  $query = mysqli_query($conn, "insert into banner(banner_title,banner_image,status) value('$banner_title','$actual_file','$status')");
   if ($query) {
     echo "<script>alert('You have successfully inserted the data');</script>";
-    echo "<script type='text/javascript'> document.location ='tender.php'; </script>";
+    echo "<script type='text/javascript'> document.location ='banner.php'; </script>";
   } else {
     echo "<script>alert('Something Went Wrong. Please try again');</script>";
   }
@@ -84,7 +74,7 @@ include('admin_head.php');
           <!-- Content -->
 
           <div class="container-xxl flex-grow-1 container-p-y">
-            <h4 class="fw-bold py-3 mb-4"> Add Tender</h4>
+            <h4 class="fw-bold py-3 mb-4"> Add Banner</h4>
 
             <!-- Basic Layout & Basic with Icons -->
             <div class="row">
@@ -92,18 +82,18 @@ include('admin_head.php');
               <div class="col-xxl">
                 <div class="card mb-4">
                   <div class="card-header d-flex align-items-center justify-content-between">
-                    <h5 class="mb-0">Add Tender</h5>
+                    <h5 class="mb-0">Add Banner</h5>
                     <small class="text-muted float-end"></small>
                   </div>
                   <div class="card-body">
                     <form method="post" enctype="multipart/form-data">
                       <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="basic-default-name">Tender No</label>
+                        <label class="col-sm-2 col-form-label" for="basic-default-name">Banner Title</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" name="tender_no" required id="tender_no" placeholder="Tender No" />
+                          <input type="text" class="form-control" name="banner_title" required id="banner_title" placeholder="Banner Title" />
                         </div>
                       </div>
-                      <div class="row mb-3">
+                      <!-- <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="basic-default-name">Tender Type</label>
                         <div class="col-sm-10">
                           <select class="form-select" id="tender_type" required name="tender_type" aria-label="Default select example">
@@ -111,40 +101,28 @@ include('admin_head.php');
                             <option value="E-Tender">E-Tender</option>
                           </select>
                         </div>
-                      </div>
+                      </div> -->
 
-                      <div class="row mb-3">
+                      <!-- <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="basic-default-company">Title</label>
                         <div class="col-sm-10">
                           <textarea id="title" name="title" class="form-control" placeholder="Title" required aria-describedby="basic-icon-default-message2"></textarea>
                         </div>
-                      </div>
+                      </div> -->
                       <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="basic-default-email">Tender Notice</label>
+                        <label class="col-sm-2 col-form-label" for="basic-default-email">Banner Image</label>
                         <div class="col-sm-10">
                           <div class="input-group input-group-merge">
-                            <input type="file" id="tender_notice" name="tender_notice" required class="form-control" accept="application/pdf" />
-
+                            <input type="file" id="banner_image" name="banner_image" required class="form-control" />
                           </div>
-                        </div>
-                      </div>
-                      <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="basic-default-company">Publication Date</label>
-                        <div class="col-sm-10">
-                          <input type="date" class="form-control" id="publication_date" name="publication_date" required placeholder="Publication Date" />
-                        </div>
-                      </div>
-                      <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="basic-default-company">Submission Date</label>
-                        <div class="col-sm-10">
-                          <input type="date" class="form-control" id="submission_date" name="submission_date" required placeholder="Submission Date" />
+                          <span class="system required" style="color: red;">(Recommended Image Size: 2000 × 600)*</span>
                         </div>
                       </div>
                       <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="basic-default-email">Status</label>
                         <div class="col-sm-10">
                           <div class="input-group input-group-merge">
-                            <input type="checkbox" id="status" name="status" value="1" class="" />
+                            <input type="checkbox" id="status" name="status" value="1"  class="" />
                           </div>
                         </div>
                       </div>

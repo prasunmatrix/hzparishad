@@ -15,7 +15,7 @@ include_once('header.php');
     </div>
   </section>
   <!-- End Breadcrumbs -->
-  <section class="inner-page common_section">
+  <section class="inner-page">
     <div class="container" data-aos="fade-up">
       <div class="row">
         <div class="col-lg-3">
@@ -25,10 +25,10 @@ include_once('header.php');
         </div>
         <div class="col-lg-9">
           <a href="assets/uploads/member_document/members.pdf" target="_blank">
-            <h2>Members</h2>
+            <h3>Members</h3>
           </a>
           <!-- <p>This page is under construction.</p> -->
-          <h3>Elected Members of Howrah Zilla Parishad</h3>
+          <h2>Elected Members of Howrah Zilla Parishad</h2>
           <table style="width:80%">
             <tr>
               <th>Sl. No.</th>
@@ -203,11 +203,8 @@ include_once('header.php');
               <td>Tapas Maity</td>
             </tr>
           </table>
-          <div class="C-title_wrapper">
-            <h2>Ex - Officio Members of Howrah Zilla Parishad</h2>
-            <h3>Sabhapatis</h3>
-          </div>
-          
+          <h2>Ex - Officio Members of Howrah Zilla Parishad</h2>
+          <h3>Sabhapatis</h3>
           <table style="width:80%">
             <tr>
               <th>Sl. No.</th>
@@ -285,9 +282,7 @@ include_once('header.php');
               <td>Sabhapati - Udaynarayanpur Panchayat Samiti</td>
             </tr>
           </table>
-          <div class="C-title_wrapper">
-            <h3>M.P.s</h3>
-          </div>
+          <h3>M.P.s</h3>
           <table style="width:80%">
             <tr>
               <th>Sl. No.</th>
@@ -310,9 +305,7 @@ include_once('header.php');
               <td>M. P. - 26 Serampore parliamentary constituency</td>
             </tr>
           </table>
-          <div class="C-title_wrapper">
-            <h3>M.L.As</h3>
-          </div>
+          <h3>M.L.As</h3>
           <table style="width:80%">
             <tr>
               <th>Sl. No.</th>
@@ -382,11 +375,11 @@ include_once('header.php');
 </main>
 <!-- End #main -->
 <!-- ======= Footer ======= -->
-<!-- <style>
+<style>
 table, th, td {
   border: 1px solid black;
 }
-</style> -->
+</style>
 <?php
 include_once('footer.php');
 ?>

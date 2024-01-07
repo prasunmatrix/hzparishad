@@ -7,6 +7,7 @@ if (isset($_POST['submit'])) {
   $eid = $_GET['editid'];
   //Getting Post Values
   $video_title = $_POST['video_title'];
+  $video_title=preg_replace('/[^A-Za-z0-9\-]/', '', $video_title);
   @$status = $_POST['status']==true ? '1' : '0';
   if ($_FILES['video']['name'] == '') {
     $actual_file = $_POST['video_old'];

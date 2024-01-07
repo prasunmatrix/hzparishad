@@ -6,6 +6,7 @@ include_once("../conn.php");
 if (isset($_POST['submit'])) {
   //getting the post values
   $video_title = $_POST['video_title'];
+  $video_title=preg_replace('/[^A-Za-z0-9\-]/', '', $video_title);
   @$status = $_POST['status']==true ? '1' : '0'; 
   $file_name = $_FILES['video']['name'];
   $file_size = $_FILES["video"]["size"];

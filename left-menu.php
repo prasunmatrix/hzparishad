@@ -21,7 +21,7 @@
          <li class="dropdown">
             <a href="#"><span>Development Schemes</span> <i class="bi bi-chevron-right"></i></a>
             <ul>
-               <li><a href="bangla-awaas-yojana.php">Bangla Awaas Yojana</a></li>
+               <li><a href="pradhan-mantri-awaas-yojana.php">Pradhan Mantri Awaas Yojana</a></li>
                <li><a href="chcmi.php">CHCMI</a></li>
                <li><a href="pmgsy.php">PMGSY</a></li>
                <li><a href="mission-nirmal-bangla.php">Mission Nirmal Bangla</a></li>

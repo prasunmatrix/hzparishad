@@ -53,7 +53,8 @@
             <a href="index.php" class="logo me-auto"><img src="assets/img/logo.png" alt="Howrah Zilla Parishad"></a>
             <nav class="navbar order-last order-lg-0 desktop">
                <ul>
-                  <li><a class="nav-link" href="https://www.demoyourprojects.com/hzparishad/">Home</a></li>
+                  <!-- <li><a class="nav-link" href="https://www.demoyourprojects.com/hzparishad/">Home</a></li> -->
+                  <li><a class="nav-link" href="index.php">Home</a></li>
                   <li class="dropdown">
                      <a href="#"><span>About Us</span> <i class="bi bi-chevron-down"></i></a>
                      <ul>
